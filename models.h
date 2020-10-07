@@ -18,19 +18,21 @@ const double GF1 = 1575420000.0;
 const double GF2 = 1227600000.0;
 const double RF1 = 1602000000.0;
 const double RF2 = 1246000000.0;
-const double DRF1=     562500.0;
-const double DRF2=     437500.0;
+const double DRF1 = 562500.0;
+const double DRF2 = 437500.0;
 const double UGLE = 0.000072921151467;
-const double MU   = 398600441800000.0;
-const double J20  = 1082.62982126e-6;
-const double Ra   = 6378137.0;
+const double MU = 398600441800000.0;
+const double J20 = 1082.62982126e-6;
+const double Ra = 6378137.0;
 const double SPEED_OF_LIGHT = 299792458.0;
 
-struct SatParams{
+struct SatParams
+{
     double X;
     double Y;
     double Z;
     double dT;
+    double K = 9999;
     double P;
     double P1;
     double P2;
@@ -39,28 +41,27 @@ struct SatParams{
     double C1;
     double C2;
     double C;
-    int K = 0;
     bool isVisible = false;
 };
 
-struct RSatsParams{
+struct RSatsParams
+{
     DateTime moment;
     std::array<SatParams, 32> sats;
 };
 
-struct GSatsParams{
+struct GSatsParams
+{
     DateTime moment;
     std::array<SatParams, 24> sats;
 };
 
-template <class T>
-double f1(T sat) { return(typeid(sat) == typeid(GSatsParams)) ? GF1 : RF1 + sat.K * DRF1; }
+double f1(SatParams sat);
 
-template <class T>
-double f2(T sat) { return(typeid(sat) == typeid(GSatsParams)) ? GF2 : RF2 + sat.K * DRF2; }
+double f2(SatParams sat);
 
 std::vector<double> model(double, std::vector<double>);
-std::vector<RSatsParams> RSatPositions(std::vector<OFileData>& OFileData, std::vector<GFileData>& gFileData);
-std::vector<GSatsParams> GSatPositions(std::vector<OFileData>&, std::vector<NFileData>&);
+std::vector<RSatsParams> RSatPositions(std::vector<OFileData> &OFileData, std::vector<GFileData> &gFileData);
+std::vector<GSatsParams> GSatPositions(std::vector<OFileData> &, std::vector<NFileData> &);
 
 #endif // MODELS_H

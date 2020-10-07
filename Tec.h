@@ -30,12 +30,10 @@ struct TECvalG{
     DateTime moment;
 };
 
-
 template < class TEC_VAL, class SAT_PARAMS>
 std::vector<TEC_VAL> TEC(std::vector<SAT_PARAMS>& satParamsData,std::array<double, 3>& pointPos) {
     std::vector<TEC_VAL> TECData;
     double Rr = l2<double, 3>(pointPos);
-    std::vector<TECvalR> TECData_;
 
     for(auto satParams: satParamsData){
         TEC_VAL TECDatum;
