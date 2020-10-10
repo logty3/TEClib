@@ -68,7 +68,7 @@ std::vector<NFileData> parseNFile(std::ifstream* file){
 
         auto params = parseParamsBlockN(paramsBlock);
 
-        if(!previousMoment.is_not_a_date_time() && (previousMoment<moment)){
+        if(!previousMoment.isNotADateTime() && (previousMoment<moment)){
             fileData.push_back(fileDataBlock);
             fileDataBlock = NFileData();
             fileDataBlock.moment = moment;

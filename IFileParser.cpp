@@ -37,7 +37,7 @@ std::vector<IFileData> parseIFile(std::ifstream* file){
         int year, month, day, hrs, min, sec;
         std::istringstream(buffer)>> year >> month >> day >> hrs >> min >> sec;
 
-        DateTime moment(2000+year, month, day, hrs, min, sec);
+        DateTime moment(year, month, day, hrs, min, sec);
 
         std::array<std::array<double, 73>, 71> values;
 

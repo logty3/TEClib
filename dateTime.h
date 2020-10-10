@@ -10,6 +10,7 @@ class DateTime {
 public:
 
     DateTime(int, int, int, int ,int, double);
+    DateTime(int, int, int ,int, double);
     DateTime();
 
     int year;
@@ -28,8 +29,9 @@ public:
     bool operator>(const DateTime&);
     bool operator<(const DateTime&);
     bool operator!=(const DateTime&);
-    bool is_not_a_date_time();
-    boost::posix_time::ptime get_posix_time();
+    bool isNotADateTime();
+    boost::posix_time::ptime getPosixTime();
+    boost::gregorian::date::day_of_year_type getDayOfYear();
 private:
     boost::posix_time::ptime ptime;
     bool isDateTime = false;

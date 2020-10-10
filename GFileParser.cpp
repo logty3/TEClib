@@ -74,7 +74,7 @@ std::vector<GFileData> parseGFile(std::ifstream* file){
         params.TauC = TauC;
         params.leap = leap;
 
-        if(!previousMoment.is_not_a_date_time() && (previousMoment<moment)){
+        if(!previousMoment.isNotADateTime() && (previousMoment<moment)){
             fileData.push_back(fileDataBlock);
             fileDataBlock = GFileData();
             fileDataBlock.moment = moment;

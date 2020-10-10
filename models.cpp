@@ -1,9 +1,6 @@
 #include "models.h"
 
-double f1(SatParams sat)
-{
-    return (sat.K == 9999) ? GF1 : RF1 + sat.K * DRF1;
-}
+double f1(SatParams sat) { return (sat.K == 9999) ? GF1 : RF1 + sat.K * DRF1; }
 
 double f2(SatParams sat) { return (sat.K == 9999) ? GF2 : RF2 + sat.K * DRF2; }
 
