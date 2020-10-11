@@ -36,6 +36,42 @@ double TECmapDec(std::vector<IFileData>& iFileData, DateTime time, std::array<do
 
 double IPPTEC(std::vector<IFileData>&, DateTime, std::array<double, 3>&, std::array<double, 3>&);
 
+template < class TEC_VAL>
+std::vector<TEC_VAL>  resolvePhaseAmbiguity(std::vector<TEC_VAL> TECData){
+    for(std::size_t index = 0; index < TECData[0].sat.size(); index++){
+        double diff = 0;
+        int count = 0, list = 0;
+        std::size_t i1;
+        for(std::size_t i = 0;i <TECData.size(); i++){
+            if(!isnan(TECData[i].sat[index].tecC) && !isnan(TECData[i].sat[index].tecL))
+             {
+                if(count == 0)   {
+                    i1=i;
+                }
+                  diff += (TECData[i].sat[index].tecL - TECData[i].sat[index].tecC);
+                  count ++;
+                  list = 0;
+             }
+            else
+                list++;
+            if(list > 10 && count > 1)
+            {
+                for(;i1<i;i1++){
+                    if(!isnan(TECData[i1].sat[index].tecL))
+                    {
+                        TECData[i1].sat[index].tecL -= diff/count;
+                    }
+                }
+
+                list = 0;
+                diff = 0;
+                count = 0;
+            }
+        }
+    }
+    return TECData;
+}
+
 template < class TEC_VAL, class SAT_PARAMS>
 std::vector<TEC_VAL> TEC(std::vector<SAT_PARAMS>& satParamsData,std::array<double, 3>& pointPos) {
     std::vector<TEC_VAL> TECData;
