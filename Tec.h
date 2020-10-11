@@ -46,7 +46,7 @@ std::vector<TEC_VAL> TEC(std::vector<SAT_PARAMS>& satParamsData,std::array<doubl
         std::size_t i =0;
         for(auto &sat: satParams.sats){
             if(sat.isVisible){
-                std::array<double, 3> RsRr{sat.X -  pointPos[0], sat.Y -  pointPos[1], sat.Z -  pointPos[2]};
+                std::array<double, 3> RsRr{sat.coord[0] -  pointPos[0], sat.coord[1] -  pointPos[1], sat.coord[2] -  pointPos[2]};
                 double cosz = (RsRr[0]*pointPos[0] + RsRr[1] *pointPos[1] + RsRr[2] *pointPos[2]) / (Rr * l2<double, 3>(RsRr));
                 if (std::asin(cosz) * 180 / M_PI < 10) continue;
                 double cosz_ = pow((1 - (1 - cosz * cosz) * pow(Rr / (RC + H_ION), 2)), 0.5);
