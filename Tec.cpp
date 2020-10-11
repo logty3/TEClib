@@ -84,3 +84,11 @@ double IPPTEC(std::vector<IFileData>& iFileData, DateTime time, std::array<doubl
 
     return TECmapDec(iFileData, time, point2);
 }
+
+std::vector<TECvalG> TEC(std::vector<GSatsParams>& satParamsData, std::array<double, 3>& pointPos){
+    return _TEC<TECvalG>(satParamsData, pointPos);
+};
+
+std::vector<TECvalR> TEC(std::vector<RSatsParams>& satParamsData,std::array<double, 3>& pointPos){
+    return _TEC<TECvalR>(satParamsData, pointPos);
+};
