@@ -18,8 +18,11 @@ int main(){
 
     file->close();
 
-    std::cout<<iData[0].moment.getPosixTime();
+    std::array<double, 2> point1 {-177.5 * M_PI / 180, -77.5 * M_PI / 180};
+    std::cout<<TECmapSpher(iData, iData[0].moment, point1);
 
-    std::cout<<123;
+//    std::cout<<DecToSpher(point)[1]*180/M_PI;
+
+   // std::cout<<123;
     return 0;
 }

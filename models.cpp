@@ -31,7 +31,7 @@ SatParams RSatPosition(GFileParams params, DateTime t1, DateTime t2)
     dT += params.TauC;
     dT += params.GammaN * (t2UTC - t1UTC);
 
-    return (SatParams){.X = q[0], .Y = q[1], .Z = q[2], .dT = dT, .K = params.K};
+    return (SatParams){.coord = std::array<double, 3>{q[0], q[1], q[2]}, .dT = dT, .K = params.K};
 }
 
 std::vector<RSatsParams> RSatPositions(std::vector<OFileData> &OFileData, std::vector<GFileData> &gFileData)
@@ -147,7 +147,7 @@ SatParams GSatPosition(NFileParams &params, DateTime &t1, DateTime &t2)
 
     double dT =
         -2. * std::sqrt(MU) * params.A * params.e * std::sin(E) / std::sqrt(SPEED_OF_LIGHT) + params.af0 + params.af1 * (Tem - Toc) + params.af2 * (Tem - Toc) * (Tem - Toc);
-    return (SatParams){.X = x, .Y = y, .Z = z, .dT = dT, .K = 9999};
+    return (SatParams){.coord = std::array<double, 3>{x, y, z}, .dT = dT, .K = 9999};
 }
 
 std::vector<GSatsParams> GSatPositions(std::vector<OFileData> &OFileData, std::vector<NFileData> &nFileData)

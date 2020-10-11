@@ -1,5 +1,17 @@
 #include "utils.h"
 
+std::array<double, 2> DecToSpher(std::array<double, 3>& point) {
+    double e = (Ra * Ra - Rb * Rb) / (Ra * Ra);
+    double e_ = (Ra * Ra - Rb * Rb) / (Rb * Rb);
+
+    double tet = std::atan2(Ra * point[2], Rb * std::sqrt(point[0] * point[0] + point[1] * point[1]));
+
+    return {
+         std::atan2(point[1], point[0]),
+         std::atan2(point[2] + e_ * e_ * Rb * std::pow(std::sin(tet), 3), std::sqrt(point[0] * point[0] + point[1] * point[1]) - e * e * Ra * std::pow(std::cos(tet), 3))
+    };
+}
+
 std::vector<double> RK4(std::vector<double>(*der)(double, std::vector<double>), std::vector<double>& X1, double& t1, double& t2, const double& h1){
     std::vector<double> k1(X1.size()), k2(X1.size()), k3(X1.size()),k4(X1.size()), X(X1.size()), X2(X1.size());
     double t = t1;

@@ -9,6 +9,7 @@
 #include "models.h"
 #include "utils.h"
 #include "dateTime.h"
+#include "IFileParser.h"
 
 const double H_ION = 450000.0;
 const double RC = 6371000.0;
@@ -28,6 +29,12 @@ struct TECvalG{
     std::array<TECval, 32> sat;
     DateTime moment;
 };
+
+double TECmapSpher(std::vector<IFileData>& iFileData, DateTime time, std::array<double, 2>);
+
+double TECmapDec(std::vector<IFileData>& iFileData, DateTime time, std::array<double, 3>);
+
+double IPPTEC(std::vector<IFileData>&, DateTime, std::array<double, 3>&, std::array<double, 3>&);
 
 template < class TEC_VAL, class SAT_PARAMS>
 std::vector<TEC_VAL> TEC(std::vector<SAT_PARAMS>& satParamsData,std::array<double, 3>& pointPos) {

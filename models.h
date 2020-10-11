@@ -24,13 +24,12 @@ const double UGLE = 0.000072921151467;
 const double MU = 398600441800000.0;
 const double J20 = 1082.62982126e-6;
 const double Ra = 6378137.0;
+const double Rb = 6356752.3142;
 const double SPEED_OF_LIGHT = 299792458.0;
 
 struct SatParams
 {
-    double X;
-    double Y;
-    double Z;
+    std::array<double, 3> coord;
     double dT;
     double K = 9999;
     double P;

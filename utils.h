@@ -2,7 +2,7 @@
 #define UTILS_H
 
 #include <vector>
-
+#include "models.h"
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/date_time/gregorian/greg_date.hpp>
 
@@ -15,5 +15,7 @@ T l2(std::array<T, N> arr){
         sum +=(val*val);
     return std::sqrt(sum);
 }
+
+std::array<double, 2> DecToSpher(std::array<double, 3>& point);
 
 #endif // UTILS_H

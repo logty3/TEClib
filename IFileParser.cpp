@@ -8,7 +8,7 @@ inline std::array<double, 73> parseParamsBlockI(std::array<std::string, 6>& bloc
     for(auto &value: params){
         double temp;
         valuesStream>>temp;
-        value = temp/10;
+        value = temp;
         i++;
         if(i % 16 == 0)
             valuesStream = std::istringstream(block[i/16 + 1]);
