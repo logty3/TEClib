@@ -83,7 +83,7 @@ std::vector<TEC_VAL>  resolveBIAS(std::vector<TEC_VAL> TECData, std::vector<SAT_
         int count = 0, list = 0;
         std::size_t i1;
         for(std::size_t i = 0;i <TECData.size(); i++){
-            double ippTEC = IPPTEC(iFileData, TECData[i].moment, satParamsData[i].sat[index].coord, point);
+            double ippTEC = IPPTEC(iFileData, TECData[i].moment, satParamsData[i].sats[index].coord, point);
             if(!isnan(TECData[i].sat[index].tecC) && ippTEC!=9999)
              {
                 if(count == 0)   {
