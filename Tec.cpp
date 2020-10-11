@@ -6,7 +6,12 @@ double TECmapSpher(std::vector<IFileData>& iFileData, DateTime time, std::array<
 
     if (lat > 87.5 || lat < -87.5) return 9999;
 
-    double iSec, timeSec = time.getUTCTime();
+    if(iFileData.size()==0) return 9999;
+
+    double iSec = iFileData[0].moment.getUTCTime(), timeSec = time.getUTCTime();
+
+    if(timeSec < iSec) return 9999;
+
     std::size_t i,j,k;
 
     for ( i = 0; i < iFileData.size(); i++ ) {
