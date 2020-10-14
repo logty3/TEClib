@@ -29,7 +29,6 @@ double TECmapSpher(std::vector<IFileData>& iFileData, DateTime time, std::array<
         if (lon < iFileData[i].lon[k]) break;
     }
 
-
     if (iFileData[i - 1].values[j - 1][k - 1] == 9999 ||
         iFileData[i - 1].values[j - 1][k    ] == 9999 ||
         iFileData[i - 1].values[j    ][k - 1] == 9999 ||
